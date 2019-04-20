@@ -11,7 +11,7 @@ import time
 from bs4 import BeautifulSoup
 
 import re
-import mechanize
+from mechanize import Browser
 
 
 url = "https://apps.webofknowledge.com/"
@@ -19,7 +19,7 @@ search_string = "\"liquid crystal\""
 
 
 
-br = mechanize.Browser()
+br = Browser()
 
 
 
