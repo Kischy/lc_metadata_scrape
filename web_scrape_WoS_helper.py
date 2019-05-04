@@ -27,7 +27,7 @@ def search_on_web_of_science(driver,search_string):
 
 def click_on_element_by_id(driver,element_id):         
     WebDriverWait(driver, standard_delay).until(EC.presence_of_element_located((By.ID, "pageCount.bottom")))
-    driver.implicitly_wait(short_delay)
+    driver.implicitly_wait(medium_delay)
     element = driver.find_element_by_id(element_id)    
     element.click()        
 
@@ -126,6 +126,7 @@ def download_rec_open(driver, from_rec, to_rec):
     export = driver.find_element_by_xpath("//button[@id='exportButton']")
     export.click()
     
+    driver.implicitly_wait(medium_delay)
     driver.implicitly_wait(medium_delay)
 
     close_but = driver.find_element_by_xpath("//a[@class='flat-button quickoutput-cancel-action']")

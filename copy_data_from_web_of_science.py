@@ -55,8 +55,11 @@ hp.open_web_of_science(driver)
 hp.search_on_web_of_science(driver,"\"liquid crystal\"")
 
 
-times_cited_id = r"LC.D;PY.D;AU.A.en;SO.A.en;VL.D;PG.A"
-hp.click_on_element_by_id(driver,times_cited_id)
+#times_cited_id = r"LC.D;PY.D;AU.A.en;SO.A.en;VL.D;PG.A"
+#hp.click_on_element_by_id(driver,times_cited_id)
+
+driver.implicitly_wait(medium_delay)
+
 
 
 elements = hp.get_times_cited_elements(driver)
@@ -67,8 +70,11 @@ hp.check_cited_elements(elements,10)
 No_of_results = hp.get_number_of_results(driver)
 
 
-from_rec = 1
-to_rec = 500
+
+start_from_rec = 60501
+start_to_rec = 61000
+from_rec = start_from_rec
+to_rec = start_to_rec
 number_of_recs = 500
 number_of_downloads = 0
 
@@ -96,9 +102,8 @@ if from_rec <= No_of_results:
     number_of_downloads += 1
     
     
-from_rec = 1
-to_rec = 500
-number_of_recs = 500
+from_rec = start_from_rec
+to_rec = start_to_rec
     
     
 for i in range(number_of_downloads):
