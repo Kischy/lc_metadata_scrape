@@ -14,6 +14,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 import web_scrape_WoS_helper as hp
 
+import os
+
+
+
+data_folder         = r"C:\Cloud 2\Programmierung\Python\lc_metadata_scrape_data"
+download_folder     = r"C:\Users\Kischy\Downloads"
+std_file_name       = r"savedrecs"
+
 
 
 profile = webdriver.FirefoxProfile()
@@ -27,7 +35,9 @@ profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain")
 firefox_binary_exe_path = r"C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 driver_exe_path = r"C:\\Cloud 2\\Programmierung\\Python\\geckodriver\\geckodriver.exe"
 standard_delay = 10
+medium_delay = 3
 short_delay = 1
+
 
 
 binary = FirefoxBinary(firefox_binary_exe_path)
@@ -54,14 +64,71 @@ hp.check_cited_elements(elements,10)
 #times_cited = hp.get_times_cited_numbers(elements)
 
 
-
 No_of_results = hp.get_number_of_results(driver)
 
 
+from_rec = 1
+to_rec = 500
+number_of_recs = 500
+number_of_downloads = 0
 
 
 
-#hp.download_records_first(driver,"2","399")
+
+while to_rec < No_of_results:
+    if(number_of_downloads == 0):    
+        hp.download_records_first(driver,str(from_rec),str(to_rec))
+    else:
+        hp.download_records(driver,str(from_rec),str(to_rec))
+        
+    number_of_downloads += 1
+    
+    driver.implicitly_wait(medium_delay)
+        
+    from_rec += number_of_recs
+    to_rec += number_of_recs
+    
+
+driver.implicitly_wait(medium_delay)
+
+if from_rec <= No_of_results:
+    hp.download_records(driver,str(from_rec),str(No_of_results))
+    number_of_downloads += 1
+    
+    
+from_rec = 1
+to_rec = 500
+number_of_recs = 500
+    
+    
+for i in range(number_of_downloads):
+    if i == 0:
+        os.rename(download_folder + "\\" + std_file_name + ".txt", data_folder + "/records_from_" + str(from_rec) + "_to_" + str(to_rec) + ".txt")
+    elif (i+1) == number_of_downloads:
+        os.rename(download_folder + "\\" + std_file_name + "(" + str(i) + ")" + ".txt", data_folder + "/records_from_" + str(from_rec) + "_to_" + str(No_of_results) + ".txt")
+    else:
+        os.rename(download_folder + "\\" + std_file_name + "(" + str(i) + ")" + ".txt", data_folder + "/records_from_" + str(from_rec) + "_to_" + str(to_rec) + ".txt")
+
+    from_rec += number_of_recs
+    to_rec += number_of_recs
+    
+
+#
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
 
 #hp.download_records(driver,"2","23")
 
