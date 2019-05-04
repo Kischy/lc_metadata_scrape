@@ -55,114 +55,16 @@ hp.check_cited_elements(elements,10)
 
 
 
-
-
-export = driver.find_element_by_xpath("//button[@id='exportTypeName']")
-export.click()
-
-driver.implicitly_wait(short_delay)
-
-export = driver.find_element_by_xpath("//a[@name='Export to Other File Formats']")
-export.click()
-
-driver.implicitly_wait(short_delay)
-
-
-export = driver.find_element_by_xpath("//input[@id='numberOfRecordsRange']")
-export.click()
-
-driver.implicitly_wait(short_delay)
-
-
-export = driver.find_element_by_xpath("//input[@id='markFrom']")
-export.clear()
-export.send_keys("1")
-
-driver.implicitly_wait(short_delay)
-
-
-export = driver.find_element_by_xpath("//input[@id='markTo']")
-export.clear()
-export.send_keys("500")
-
-driver.implicitly_wait(short_delay)
-
-#export = driver.find_element_by_xpath("//span[@id='select2-bib_fields-container']")
-#export.click()
-
-driver.implicitly_wait(short_delay)
-
-record = driver.find_element_by_xpath("//span[@id='select2-bib_fields-container']")
-record.click()
-
-secondLevelMenu = driver.find_elements_by_xpath("//*[text()[contains(., 'Full Record and Cited References')]]");
-secondLevelMenu[2].click()
-
-
-#driver.implicitly_wait(short_delay)
-
-record = driver.find_element_by_xpath("//span[@id='select2-saveOptions-container']")
-record.click()
-
-secondLevelMenu = driver.find_elements_by_xpath("//*[text()[contains(., 'Plain Text')]]");
-secondLevelMenu[4].click()
-
-
-export = driver.find_element_by_xpath("//button[@id='exportButton']")
-export.click()
-
-
-
-#action.move_to_element(secondLevelMenu).perform()
-
-#secondLevelMenu.click()
-
-
-
-#export.find_element_by_xpath("//span[@aria-activedescendant='select2-bib_fields-result-eptz-HIGHLY_CITED HOT_PAPER OPEN_ACCESS PMID USAGEIND AUTHORSIDENTIFIERS ACCESSION_NUM FUNDING SUBJECT_CATEGORY JCR_CATEGORY LANG IDS PAGEC SABBR CITREFC ISSN PUBINFO KEYWORDS CITTIMES ADDRS CONFERENCE_SPONSORS DOCTYPE CITREF ABSTRACT CONFERENCE_INFO SOURCE TITLE AUTHORS  ']").click()
-
-
-
-
-#record = driver.find_element_by_name("fields_selection")
-
-#record.location_once_scrolled_into_view
-#record.click()
-#record.click()
-
-#record = driver.find_element_by_name("fields_selection")
-
-#driver.execute_script("arguments[0].click();",record)
-
-#record_content = Select(driver.find_element_by_xpath("//select[@id='bib_fields']"))
-
-#record_content.select_by_index(3)
-
-#export.find_element_by_xpath("//span[.='Full Record and Cited References']").click()
-
-#export.find_element_by_xpath("//*[text()[contains(., 'Full Record and Cited References')]]").click()
-
-#driver.implicitly_wait(short_delay)
-
-
-#record_content = Select(driver.find_element_by_name("fields_selection"))
-#
-#WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By., "fields_selection")))
-#
-#record_content.select_by_index(3)
-
-
-
-#export = driver.find_element_by_xpath("//select[@id='bib_fields']")
-#select_box = Select(export)
-#select_box.select_by_index(3)
-#
-#driver.implicitly_wait(short_delay)
+No_of_results = hp.get_number_of_results(driver)
 
 
 
 
 
-#elements[0].click()
+#hp.download_records_first(driver,"2","399")
+
+#hp.download_records(driver,"2","23")
+
+
 
 #driver.quit()
